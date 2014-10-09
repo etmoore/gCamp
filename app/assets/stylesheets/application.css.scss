@@ -17,6 +17,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar {
+  background: #FF9900;
+}
+.navbar-brand {
+  color: #000;
+  decoration: none;
+}
+
 .jumbotron {
   background: image-url('seamless_paper_texture.png');
   /* background-size: cover; */

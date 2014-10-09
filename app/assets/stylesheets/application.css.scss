@@ -18,22 +18,27 @@
 @import "bootstrap";
 
 body {
-  background-image: image-url('bg-dawn.jpg');
+  background-image: url('bg-mountains.jpg');
   background-size: cover;
+  background-position: fixed;
 }
 
 .navbar {
   background: #FF9900;
 }
-.navbar-brand {
+.navbar-inverse .navbar-brand {
   color: #000;
   decoration: none;
 }
 
 .jumbotron {
-  background: image-url('seamless_paper_texture.png');
-  /* background-size: cover; */
+  background-color: rgba(0,0,0,0);
+  margin-top: 60px;
 }
+.jumbotron h1 {
+  margin-bottom: 20px;
+}
+.jumbotron
 
 .panel-image {
   margin-bottom: 15px;

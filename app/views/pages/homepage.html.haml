@@ -1,39 +1,19 @@
-.navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{:href => "#"} gCamp
-    .navbar-collapse.collapse
-    / /.navbar-collapse
-/ Main jumbotron for a primary marketing message or call to action
-.container
-  .jumbotron.text-center
-    %h1 gCamp
-    %p Your life, organized
-.container
-  / Example row of columns
-  .row
-    - @columns.each do |title, contents|
-      .col-md-4
-        .panel.panel-primary
-          .panel-heading
-            %h3.panel-title
-              = title
-          .panel-body
-            - if contents.length <= 1
-              %p
-                = contents[0]
-            -else
-              %ul
-                - contents.each do |content|
-                  %li
-                    = content
-/ /container
-%footer
-  %a.footer-tab.text-center{href: "http://www.github.com"}
-    = image_tag("etmoore-avatar.png", class:"footer-avatar", alt:"author avatar")
-    %span.copyright © Evan Moore 2014
+.jumbotron.text-center
+  %h1 gCamp
+  %p Your life, organized
+.row
+  - @columns.each do |title, contents|
+    .col-md-4
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            = title
+        .panel-body
+          - if contents.length <= 1
+            %p
+              = contents[0]
+          -else
+            %ul
+              - contents.each do |content|
+                %li
+                  = content

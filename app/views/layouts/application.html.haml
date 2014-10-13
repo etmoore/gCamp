@@ -11,7 +11,30 @@
     = stylesheet_link_tag 'application'
 
   %body
-    = yield
+    .navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
+      .container
+        .navbar-header
+          %button.navbar-toggle.collapsed{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to "gCamp", root_path, class: "navbar-brand"
+        .navbar-collapse.collapse
+        / /.navbar-collapse
+    / Main jumbotron for a primary marketing message or call to action
+    .container
+      = yield
+      %footer.container
+        %hr
+        = link_to "about", about_path
+        |
+        = link_to "terms", terms_path
+
+      -# FIXTHIS Change this so that it uses `link_to`
+      -# %a.footer-tab.text-center{href: "http://www.github.com/etmoore"}
+      -#   = image_tag("etmoore-avatar.png", class:"footer-avatar", alt:"author avatar")
+      -#   %span.copyright © Evan Moore 2014
 
     /
       Bootstrap core JavaScript

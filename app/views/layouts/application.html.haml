@@ -10,7 +10,7 @@
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Montserrat:400,700'
     = stylesheet_link_tag 'application'
 
-  %body
+  %body{:class => ("homepage" if current_page?('/'))}
     .navbar.navbar-inverse.navbar-fixed-top{:role => "navigation"}
       .container
         .navbar-header
@@ -26,16 +26,9 @@
     .container
       = yield
       %footer.container
-        %hr
-        = link_to "about", about_path
+        = link_to "about", about_path, {:class => ("disabled" if current_page?('/about'))}
         |
-        = link_to "terms", terms_path
-
-      -# FIXTHIS Change this so that it uses `link_to`
-      -# %a.footer-tab.text-center{href: "http://www.github.com/etmoore"}
-      -#   = image_tag("etmoore-avatar.png", class:"footer-avatar", alt:"author avatar")
-      -#   %span.copyright © Evan Moore 2014
-
+        = link_to "terms", terms_path, {:class => ("disabled" if current_page?('/terms'))}
     /
       Bootstrap core JavaScript
       \==================================================

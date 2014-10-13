@@ -28,13 +28,16 @@ $galvanize-orange: #FF9900;
 }
 
 body {
-  background-image: image-url('bg-mountains.jpg');
   background-size: cover;
   background-position: fixed;
   background-repeat: no-repeat;
   font-family: $body-fontstack;
   font-size: 16px;
   font-weight: normal;
+}
+
+.homepage {
+  background-image: image-url('bg-mountains.jpg');
 }
 
 .navbar {
@@ -57,33 +60,15 @@ body {
 }
 
 footer {
+  border-top: 1px solid black;
+  padding: 15px;
   width: 100%;
-  position: absolute;
-  bottom: 20px;
-  /* text-align: center; */
+  position: fixed;
+  bottom: 0;
+}
 
-  /* .footer-tab {
-    display: inline-block;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, .5);
-    padding: 8px;
-    border-radius: 5px 5px 0 0;
-    color: #000;
-    text-decoration: none;
-
-    .footer-avatar {
-      display: inline;
-      height: 25px;
-    }
-
-    .copyright {
-      line-height: 25px;
-      vertical-align: middle;
-    }
-  } */
-
-  /* .footer-tab:hover {
-    @extend .footer-tab;
-    background: rgba(255, 255, 255, .7);
-  } */
+a.disabled {
+  color: #ababab;
+  pointer-events: none;
+  cursor: default;
 }

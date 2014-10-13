@@ -26,9 +26,9 @@
     .container
       = yield
       %footer.container
-        = link_to "about", about_path, {:class => ("disabled" if current_page?('/about'))}
+        = link_to_unless_current("about", { action: "about" })
         |
-        = link_to "terms", terms_path, {:class => ("disabled" if current_page?('/terms'))}
+        = link_to_unless_current("terms", { action: "terms" })
     /
       Bootstrap core JavaScript
       \==================================================

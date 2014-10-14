@@ -5,7 +5,6 @@ class HomepageController < ApplicationController
                 Documents:['Upload','Comment','Revise'],
                 Comments:['Comment on task and documents','Get email notifications']
                 }
-    render :show
   end
 
 end

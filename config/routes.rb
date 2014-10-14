@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root "pages#homepage"
-  get "about" => "pages#about", as: :about
-  get "terms" => "pages#terms", as: :terms
+  root "homepage#show"
+  get "about" => "about#show", as: :about
+  get "terms" => "terms#show", as: :terms
 
 end

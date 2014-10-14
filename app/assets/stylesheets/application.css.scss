@@ -23,11 +23,12 @@ $body-fontstack: 'Source Sans Pro', sans-serif;
 /* Colors */
 $galvanize-orange: #FF9900;
 
-* {
-
+html {
+  height: 100%;
 }
 
 body {
+  height: 100%;
   background-size: cover;
   background-position: fixed;
   background-repeat: no-repeat;
@@ -37,7 +38,8 @@ body {
 }
 
 .homepage {
-  background-image: image-url('bg-mountains.jpg');
+  background: image-url('bg-mountains.jpg') 0 0 fixed;
+  background-size: cover;
 }
 
 .navbar {
@@ -59,7 +61,13 @@ body {
   }
 }
 
-footer {
+.famous-quote{
+  background-color: rgba(255,255,255, .7);
+  font-weight: 700;
+}
+
+.page-footer {
+  background-color: #FFF;
   border-top: 1px solid black;
   padding: 15px;
   width: 100%;

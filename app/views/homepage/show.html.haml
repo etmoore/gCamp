@@ -17,3 +17,12 @@
               - contents.each do |content|
                 %li
                   = content
+- quotes_and_authors = [["Failure is not an option. Everyone has to succeed.", "Arnold Schwarzenegger"],
+                        ["Your time is limited, so don't waste it living someone else's life.", "Steve Jobs"],
+                        ["Better Ingredients, Better Pizza", "Pappa John"]]
+- quotes_and_authors.each do |q_and_a|
+  %blockquote.famous-quote
+    %p
+      = q_and_a[0]
+    %footer
+      = q_and_a[1]

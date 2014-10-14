@@ -26,7 +26,8 @@
     / Main jumbotron for a primary marketing message or call to action
     .container
       = yield
-      %footer.container
+    %footer.page-footer
+      .container
         = link_to_unless_current("about", about_path)
         |
         = link_to_unless_current("terms", terms_path)

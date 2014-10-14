@@ -26,9 +26,9 @@
     .container
       = yield
       %footer.container
-        = link_to_unless_current("about", { controller: "about", action: "show" })
+        = link_to_unless_current("about", about_path)
         |
-        = link_to_unless_current("terms", { controller: "terms", action: "show" })
+        = link_to_unless_current("terms", terms_path)
     /
       Bootstrap core JavaScript
       \==================================================

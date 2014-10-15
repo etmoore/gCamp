@@ -20,6 +20,6 @@
 - @quotes_and_authors.sample(3).each do |q_and_a|
   %blockquote.famous-quote
     %p
-      = q_and_a[0]
+      = q_and_a.quote
     %footer
-      = q_and_a[1]
+      = q_and_a.author

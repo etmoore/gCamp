@@ -1,7 +1,6 @@
 .page-header
   %span.h1 Tasks
-  %button.btn.btn-info.pull-right
-    = link_to 'Create Task', new_task_path
+  = link_to 'Create Task', new_task_path, class: "btn btn-info pull-right"
 %table.table
   %thead
     %tr
@@ -11,7 +10,7 @@
     - @tasks.each do |task|
       %tr
         %td= task.description
-        %td= link_to 'Show', task
-        %td= link_to 'Edit', edit_task_path(task)
-        %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Show', task, class: "btn btn-success"
+        %td= link_to 'Edit', edit_task_path(task), class: "btn btn-primary"
+        %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
 %br/

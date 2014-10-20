@@ -1,4 +1,4 @@
-= form_for(@task, html: {class: "form-horizontal"}) do |f|
+= form_for(@task, html: {class: "form-horizontal", role: "form"}) do |f|
   - if @task.errors.any?
     #error_explanation
       %h2
@@ -8,12 +8,14 @@
         - @task.errors.full_messages.each do |message|
           %li
             = message
-  .field.form-group
-    = f.label :description, class: "col-md-2"
-    = f.text_field :description, class: "col-md-10"
+  .form-group
+    = f.label :description, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :description, class: "form-control"
   - if @task.id?
-    .field.form-group
-      = f.label :complete, class: "col-md-2"
-      = f.check_box :complete, class: "col-md-1"
+    .form-group
+      .checkbox.col-sm-offset-2.col-sm-10
+        = f.check_box :complete
+        %label complete
   .actions.form-group
     = f.submit class: "btn btn-primary col-md-offset-2"

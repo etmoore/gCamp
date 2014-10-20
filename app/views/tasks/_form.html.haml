@@ -14,8 +14,8 @@
       = f.text_field :description, class: "form-control"
   - if @task.id?
     .form-group
-      .checkbox.col-sm-offset-2.col-sm-10
+      = f.label :complete, class: "col-sm-2 control-label"
+      .checkbox.col-sm-10
         = f.check_box :complete
-        %label complete
   .actions.form-group
     = f.submit class: "btn btn-primary col-md-offset-2"

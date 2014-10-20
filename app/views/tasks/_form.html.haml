@@ -12,6 +12,11 @@
     = f.label :description, class: "col-sm-2 control-label"
     .col-sm-10
       = f.text_field :description, class: "form-control"
+  .form-group
+    = f.label :due, class: "col-sm-2 control-label"
+    .col-sm-2
+      = f.date_field :due, class: "form-control"
+    %span.glyphicon.glyphicon-calendar
   - if @task.id?
     .form-group
       = f.label :complete, class: "col-sm-2 control-label"

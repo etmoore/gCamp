@@ -11,5 +11,9 @@
   .field.form-group
     = f.label :description, class: "col-md-2"
     = f.text_field :description, class: "col-md-10"
+  - if @task.id?
+    .field.form-group
+      = f.label :complete, class: "col-md-2"
+      = f.check_box :complete, class: "col-md-1"
   .actions.form-group
     = f.submit class: "btn btn-primary col-md-offset-2"

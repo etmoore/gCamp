@@ -14,9 +14,7 @@
       %tr
         %td= task.description
         %td= task.complete
-        %td
-          - if task.due
-            = task.due.strftime('%m/%d/%Y')
+        %td= task.due.strftime('%m/%d/%Y') || ''
         %td
           .pull-right
             = link_to 'Show', task, class: "btn btn-success"

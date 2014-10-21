@@ -3,20 +3,21 @@
 .page-header
   %span.h1 Tasks
   = link_to 'Create Task', new_task_path, class: "btn btn-info pull-right"
-%table.table
-  %thead
-    %tr
-      %th Description
-      %th Complete?
-      %th Due Date
-  %tbody
-    - @tasks.each do |task|
+- if @tasks
+  %table.table
+    %thead
       %tr
-        %td= task.description
-        %td= task.complete
-        %td= task.due.strftime('%m/%d/%Y')
-        %td
-          .pull-right
-            = link_to 'Show', task, class: "btn btn-success"
-            = link_to 'Edit', edit_task_path(task), class: "btn btn-primary"
-            = link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+        %th Description
+        %th Complete?
+        %th Due Date
+    %tbody
+      - @tasks.each do |task|
+        %tr
+          %td= task.description
+          %td= task.complete
+          %td= task.due.strftime('%m/%d/%Y')
+          %td
+            .pull-right
+              = link_to 'Show', task, class: "btn btn-success"
+              = link_to 'Edit', edit_task_path(task), class: "btn btn-primary"
+              = link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

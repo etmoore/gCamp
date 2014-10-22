@@ -11,7 +11,7 @@
       %th Due Date
   %tbody
     - @tasks.each do |task|
-      %tr
+      %tr{class: ("danger" if task.due_soon?)}
         %td= task.description
         %td= task.complete
         %td

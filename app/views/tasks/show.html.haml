@@ -1,6 +1,18 @@
 - unless notice.nil?
   .alert.alert-success= notice
-%p
-  %strong Description:
-  = @task.description
-= link_to 'Edit', edit_task_path(@task)
+%strong Description:
+= @task.description
+
+= form_for(@task, html: {class: "form-horizontal", role: "form"}) do |f|
+  .form-group
+    .col-sm-10
+      .checkbox
+        %label
+          = f.check_box :complete
+          %span Complete
+
+  .actions.form-group
+    .col-sm-10
+      = f.submit class: "btn btn-primary"
+
+  = link_to 'Edit', edit_task_path(@task)

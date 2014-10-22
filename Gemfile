@@ -3,9 +3,6 @@ source 'https://rubygems.org'
 group :production do
   gem 'rails_12factor'
 end
-group :development do
-  gem 'better_errors'
-end
 gem 'rails', '4.1.6'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'

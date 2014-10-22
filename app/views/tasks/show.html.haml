@@ -6,5 +6,9 @@
 %div
   %strong Complete:
   = @task.complete
+- if @task.due
+  %div
+    %strong Due:
+    = @task.due.strftime('%m/%d/%Y')
 
 = link_to 'Edit', edit_task_path(@task)

@@ -23,6 +23,7 @@ $body-fontstack: 'Source Sans Pro', sans-serif;
 /* Colors */
 $galvanize-orange: #FF9900;
 
+// Center in containing elements
 .center-row {
     display:table;
 }
@@ -32,6 +33,7 @@ $galvanize-orange: #FF9900;
     float:none;
 }
 
+// Bootstrap override
 .table tbody>tr>td{
     vertical-align: middle;
 }

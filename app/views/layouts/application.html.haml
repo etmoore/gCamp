@@ -26,6 +26,8 @@
         .navbar-collapse.collapse
         / /.navbar-collapse
     .container
+      - unless notice.nil?
+        .alert.alert-success= notice
       = yield
     %footer.page-footer
       .container

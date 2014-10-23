@@ -1,5 +1,8 @@
 .page-header
   %span.h1 Tasks
+  = link_to 'All', tasks_path(show_completed: true)
+  |
+  = link_to 'Incomplete', tasks_path
   = link_to 'Create Task', new_task_path, class: "btn btn-info pull-right"
 %table.table
   %thead

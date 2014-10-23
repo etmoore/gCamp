@@ -1,9 +1,11 @@
 %div
   %strong Description:
   = @task.description
+
 %div
   %strong Complete:
   = @task.complete
+
 - if @task.due
   %div
     %strong Due:

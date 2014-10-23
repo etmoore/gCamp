@@ -38,6 +38,13 @@ $galvanize-orange: #FF9900;
     vertical-align: middle;
 }
 
+// Disablel
+a.disabled {
+   pointer-events: none;
+   cursor: default;
+   color: #999999;
+}
+
 html {
   height: 100%;
 }

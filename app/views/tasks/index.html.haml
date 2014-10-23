@@ -3,9 +3,9 @@
     %h1.col-sm-9.center
       Tasks
     .col-sm-2.center
-      = link_to 'All', tasks_path(show_completed: true)
+      = link_to 'All', tasks_path(show_completed: true), {class: ("disabled" if params[:show_completed])}
       |
-      = link_to_unless_current 'Incomplete', tasks_path
+      = link_to 'Incomplete', tasks_path, {class: ("disabled" unless params[:show_completed])}
     .col-sm-1.center
       = link_to 'Create Task', new_task_path, class: "btn btn-info"
 %table.table

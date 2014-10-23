@@ -1,15 +1,20 @@
 .page-header
-  %span.h1 Tasks
-  = link_to 'All', tasks_path(show_completed: true)
-  |
-  = link_to 'Incomplete', tasks_path
-  = link_to 'Create Task', new_task_path, class: "btn btn-info pull-right"
+  .row.center-row
+    %h1.col-sm-9.center
+      Tasks
+    .col-sm-2.center
+      = link_to 'All', tasks_path(show_completed: true)
+      |
+      = link_to 'Incomplete', tasks_path
+    .col-sm-1.center
+      = link_to 'Create Task', new_task_path, class: "btn btn-info"
 %table.table
   %thead
     %tr
       %th Description
       %th Complete?
       %th Due Date
+      %th
   %tbody
     - @tasks.each do |task|
       %tr{class: ("danger" if task.due_soon?)}

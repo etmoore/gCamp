@@ -23,6 +23,19 @@ $body-fontstack: 'Source Sans Pro', sans-serif;
 /* Colors */
 $galvanize-orange: #FF9900;
 
+.center-row {
+    display:table;
+}
+.center {
+    display:table-cell;
+    vertical-align:middle;
+    float:none;
+}
+
+.table tbody>tr>td{
+    vertical-align: middle;
+}
+
 html {
   height: 100%;
 }

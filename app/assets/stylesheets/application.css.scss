@@ -50,7 +50,11 @@ html {
 }
 
 body {
-  height: 100%;
+  // keep footer from covering content at bottom of page
+  min-height: 100%;
+  clear: both;
+  margin-bottom: 50px;
+  
   padding-top: 60px;
   background-size: cover;
   background-position: fixed;

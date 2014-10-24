@@ -54,7 +54,7 @@ body {
   min-height: 100%;
   clear: both;
   margin-bottom: 50px;
-  
+
   padding-top: 60px;
   background-size: cover;
   background-position: fixed;
@@ -100,6 +100,13 @@ body {
   width: 100%;
   position: fixed;
   bottom: 0;
+  .link-wrapper {
+    display: inline-block;
+    img {
+      height: 20px;
+      padding: 0 5px;
+    }
+  }
 }
 
 .faq-page-header {

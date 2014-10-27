@@ -6,7 +6,6 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
     %meta{:content => "", :name => "description"}/
     %meta{:content => "", :name => "author"}/
-    %link{:href => "../../favicon.ico", :rel => "icon"}/
     = favicon_link_tag 'favicon.ico'
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Montserrat:400,700'
     = stylesheet_link_tag 'application'
@@ -48,9 +47,3 @@
             = image_tag 'twitter-logo.png'
           = link_to 'https://students.gschool.it/students/91', target: "_blank" do
             = image_tag 'gschool-logo.png'
-
-    /
-      Bootstrap core JavaScript
-      \==================================================
-    / Placed at the end of the document so the pages load faster
-    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}

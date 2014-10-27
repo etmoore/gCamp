@@ -1,0 +1,19 @@
+.page-header
+  .row.center-row
+    %h1.col-sm-11.center
+      Users
+    .col-sm-1.center
+      = link_to 'New User', new_user_path, class: "btn btn-info"
+%table.table
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th Email
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.first_name
+        %td= user.last_name
+        %td= mail_to user.email

@@ -5,9 +5,9 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     if params[:show_completed]
-      @tasks = Task.all
+      @tasks = Task.order("#{params[:sort]} #{params[:direction]}")
     else
-      @tasks = Task.where(complete: false)
+      @tasks = Task.where(complete: false).order("#{params[:sort]} #{params[:direction]}")
     end
   end
 

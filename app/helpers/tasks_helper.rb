@@ -1,7 +1,7 @@
 module TasksHelper
-  def sortable column, show_complete = false, title = nil
+  def sortable column, title = nil
     title ||= column.titleize
-    direction = (column == params[:sort] && params[:direction] = "asc") ? "desc" : "asc"
-    link_to title, :sort => column, :direction => direction, sort_by: params[:sort_by], show_complete: show_complete
+    direction = (column == params[:sort] && params[:direction] == "asc") ? "desc" : "asc"
+    link_to title, :sort => column, :direction => direction, show_completed: params[:show_completed]
   end
 end

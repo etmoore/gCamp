@@ -3,17 +3,17 @@
     %h1.col-sm-9.center
       Tasks
     .col-sm-2.center
-      = link_to 'All', tasks_path(show_completed: true, sort_by: params[:sort_by]), {class: ("disabled" if params[:show_completed])}
+      = link_to_unless params[:show_completed], 'All', tasks_path(show_completed: true, sort: params[:sort], direction: params[:direction])
       |
-      = link_to 'Incomplete', tasks_path(show_completed: false, sort_by: params[:sort_by]), {class: ("disabled" unless params[:show_completed])}
+      = link_to_if params[:show_completed], 'Incomplete', tasks_path(show_completed: nil, sort: params[:sort], direction: params[:direction])
     .col-sm-1.center
       = link_to 'Create Task', new_task_path, class: "btn btn-info"
 %table.table
   %thead
     %tr
-      %th= sortable "description", params[:show_completed]
-      %th= sortable "complete", params[:show_completed], "Complete?"
-      %th= sortable "due", params[:show_completed], "Due Date"
+      %th= sortable "description"
+      %th= sortable "complete", "Complete?"
+      %th= sortable "due", "Due Date"
       %th
   %tbody
     - @tasks.each do |task|

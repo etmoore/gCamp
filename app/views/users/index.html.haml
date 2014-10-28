@@ -17,3 +17,6 @@
         %td= user.first_name
         %td= user.last_name
         %td= mail_to user.email
+        %td
+          .pull-right
+            = link_to 'Edit', edit_user_path(user), class: "btn btn-primary"

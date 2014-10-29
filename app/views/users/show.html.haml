@@ -1,0 +1,17 @@
+.row.center-row
+  %h1.col-sm-11
+    = "#{@user.first_name} #{@user.last_name}"
+  .col-sm-1.center
+    = link_to 'Edit User', edit_user_path(@user), class: "btn btn-info"
+
+%dl.dl-horizontal
+  %dt First Name
+  %dd= @user.first_name
+%dl.dl-horizontal
+  %dt Last Name
+  %dd= @user.last_name
+%dl.dl-horizontal
+  %dt Email
+  %dd= mail_to @user.email
+
+= link_to 'All Users', users_path

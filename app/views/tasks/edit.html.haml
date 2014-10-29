@@ -1,2 +1,4 @@
 %h1 Editing Task
 = render 'form'
+.well.col-sm-offset-2.col-sm-5.text-center
+  = link_to 'Delete User', @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

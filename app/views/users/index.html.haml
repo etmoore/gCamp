@@ -7,15 +7,13 @@
 %table.table
   %thead
     %tr
-      %th First Name
-      %th Last Name
+      %th Name
       %th Email
       %th
   %tbody
     - @users.each do |user|
       %tr
-        %td= user.first_name
-        %td= user.last_name
+        %td=link_to "#{user.first_name} #{user.last_name}", user_path(user)
         %td= mail_to user.email
         %td
           .pull-right

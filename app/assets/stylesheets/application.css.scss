@@ -33,6 +33,10 @@ $galvanize-orange: #FF9900;
     float:none;
 }
 
+.valign {
+  vertical-align: middle;
+}
+
 // Bootstrap override
 .table tbody>tr>td{
     vertical-align: middle;

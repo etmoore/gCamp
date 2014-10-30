@@ -1,0 +1,5 @@
+.center-row.col-sm-12
+  %h1.center= @project.name
+  .pull-right.center
+    = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
+    = link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

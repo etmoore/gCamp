@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :tasks, :users
+  resources :tasks, :users, :projects
 
   root "homepage#show"
   get "about" => "about#show", as: :about

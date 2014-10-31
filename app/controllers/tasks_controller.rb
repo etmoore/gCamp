@@ -4,12 +4,8 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    show_completed = params[:show_completed]
-    if show_completed
-      @tasks = order_and_paginate_tasks
-    else
-      @tasks = order_and_paginate_tasks.where(complete: false)
-    end
+    @tasks = order_and_paginate_tasks.where(complete: false)
+    @tasks = order_and_paginate_tasks if show_completed?
   end
 
   # GET /tasks/1
@@ -75,6 +71,10 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:description, :complete, :due)
+    end
+
+    def show_completed?
+      params[:show_completed]
     end
 
     def sort_column

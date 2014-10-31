@@ -6,9 +6,9 @@ class TasksController < ApplicationController
   def index
     show_completed = params[:show_completed]
     if show_completed
-      @tasks = Task.order("#{sort_column} #{sort_direction}")
+        @tasks = Task.order("#{sort_column} #{sort_direction}").page(params[:page])
     else
-      @tasks = Task.order("#{sort_column} #{sort_direction}").where(complete: false)
+      @tasks = Task.order("#{sort_column} #{sort_direction}").where(complete: false).page(params[:page])
     end
   end
 

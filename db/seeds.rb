@@ -1,7 +1,7 @@
 Task.delete_all
 User.delete_all
 
-60.times do
+100.times do
   Task.create description: Faker::Lorem.sentence,
               complete: [true, false, false, false].sample,
               due: Faker::Time.forward(21)

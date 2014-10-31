@@ -6,9 +6,9 @@ class TasksController < ApplicationController
   def index
     show_completed = params[:show_completed]
     if show_completed
-        @tasks = Task.order("#{sort_column} #{sort_direction}").page(params[:page])
+      @tasks = order_and_paginate_tasks
     else
-      @tasks = Task.order("#{sort_column} #{sort_direction}").where(complete: false).page(params[:page])
+      @tasks = order_and_paginate_tasks.where(complete: false)
     end
   end
 
@@ -83,5 +83,9 @@ class TasksController < ApplicationController
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    end
+
+    def order_and_paginate_tasks
+      Task.order("#{sort_column} #{sort_direction}").page(params[:page])
     end
 end

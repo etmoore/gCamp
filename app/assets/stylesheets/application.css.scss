@@ -76,7 +76,8 @@ body {
 .navbar {
   background: $galvanize-orange;
 
-  .navbar-brand {
+  .navbar-brand,
+  .navbar-nav > li > a {
     color: #000;
     decoration: none;
   }

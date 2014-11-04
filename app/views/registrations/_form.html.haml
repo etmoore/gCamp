@@ -1,0 +1,39 @@
+= form_for @user, url: signup_path, html: {class: "form-horizontal", role: "form"} do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li
+            = message
+
+  .form-group
+    = f.label :first_name, class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.text_field :first_name, class: "form-control"
+
+  .form-group
+    = f.label :last_name, class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.text_field :last_name, class: "form-control"
+
+  .form-group
+    = f.label :email, class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.email_field :email, class: "form-control"
+
+  .form-group
+    = f.label :password, class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.password_field :password, class: "form-control"
+
+  .form-group
+    = f.label :password_confirmation, class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.password_field :password_confirmation, class: "form-control"
+
+  .actions.form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-primary"

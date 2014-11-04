@@ -18,3 +18,4 @@ gem 'autoprefixer-rails'
 gem 'faker'
 gem 'kaminari'
 gem 'bcrypt'
+gem 'better_errors',   group: :development

@@ -1,8 +1,7 @@
-= form_for @user, url: signin_path, html: {role: "form"} do |f|
-  - if @user.errors.any?
+= form_for :authentication, url: signin_path, html: {role: "form"} do |f|
+  - if @sign_in_error
     #error_explanation
-      - @user.errors.full_messages.each do |message|
-        %p.text-danger= message
+      %p.text-danger= @sign_in_error
 
   .form-group
     = f.label :email, class: "control-label"

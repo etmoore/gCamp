@@ -5,8 +5,8 @@ group :production do
 end
 group :development do
   gem 'spring'
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
 end
 gem 'rails', '4.1.6'
 gem 'pg'

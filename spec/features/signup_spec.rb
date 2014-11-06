@@ -46,4 +46,21 @@ feature "Signup" do
     end
     expect(page).to have_content "Password can't be blank"
   end
+
+  scenario "User signs up, mismatched passwords" do
+    visit root_path
+    within ".navbar" do
+      click_on "Sign Up"
+    end
+    fill_in "First name", with: "Antonio"
+    fill_in "Last name", with: "Brown"
+    fill_in "Email", with: "abrown@example.com"
+    # Mismatched passwords
+    fill_in "Password", with: "atown"
+    fill_in "Password confirmation", with: "brown"
+    within ".actions" do
+      click_on "Sign Up"
+    end
+    expect(page).to have_content "Password confirmation doesn't match Password"
+  end
 end

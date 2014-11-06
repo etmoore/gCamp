@@ -16,6 +16,5 @@ feature "Sign Out" do
     click_on "Sign Out"
     expect(page).to have_content "Sign In"
     expect(page).to have_content "Sign Up"
-    save_and_open_page
   end
 end

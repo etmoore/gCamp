@@ -1,8 +1,9 @@
 = form_for(@user, html: {class: "form-horizontal", role: "form"}) do |f|
   - if @user.errors.any?
-    #error_explanation
+    #error_explanation.alert.alert-danger
+      %strong= pluralize(@user.errors.count, "error") + " prevented this form from being saved"
       - @user.errors.full_messages.each do |message|
-        %p.text-danger= message
+        %p= message
 
   .form-group
     = f.label :first_name, class: "col-sm-2 control-label"

@@ -40,4 +40,11 @@ feature "Tasks" do
     expect(page).to have_content "test edited"
     expect(page).to have_content "12/02/2014"
   end
+
+  scenario "User attempts to create a task without a description" do
+    visit tasks_path
+    click_on "Create Task"
+    click_on "Create Task"
+    expect(page).to have_content "Description can't be blank"
+  end
 end

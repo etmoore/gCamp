@@ -5,14 +5,14 @@ feature "Tasks" do
     visit tasks_path
     click_on "Create Task"
     fill_in "Description", with: "test task"
-    fill_in "Due", with: "12/1/14"
+    fill_in "Due", with: Date.today + 7
     click_on "Create Task"
     expect(page).to have_content "Task was successfully created"
     expect(page).to have_content "test task"
   end
 
   scenario "User marks a task complete" do
-    task = Task.create description: "test", due: "12/1/14"
+    task = Task.create description: "test", due: Date.today + 7
     visit task_path(task)
     click_on "Edit"
     check "Complete"
@@ -21,7 +21,7 @@ feature "Tasks" do
   end
 
   scenario "User deletes a task" do
-    Task.create description: "test", due: "12/1/14"
+    Task.create description: "test", due: Date.today + 7
     visit tasks_path
     expect(page).to have_content "test"
     click_on "Destroy"
@@ -53,7 +53,6 @@ feature "Tasks" do
     click_on "Create Task"
     fill_in "Description", with: "Past task"
     fill_in "Due", with: Date.yesterday
-    save_and_open_page
     click_on "Create Task"
     expect(page).to have_content "Due date has already passed"
   end

@@ -1,4 +1,4 @@
-![](https://travis-ci.org/etmoore/gCamp.svg)
+![](https://travis-ci.org/etmoore/gCamp.svg?branch=master)
 #gCamp#
 ##Project Management Made Easy##
 

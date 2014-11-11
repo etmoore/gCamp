@@ -47,4 +47,14 @@ feature "Tasks" do
     click_on "Create Task"
     expect(page).to have_content "Description can't be blank"
   end
+
+  scenario "User attempts to create a task due in the past" do
+    visit tasks_path
+    click_on "Create Task"
+    fill_in "Description", with: "Past task"
+    fill_in "Due", with: Date.yesterday
+    save_and_open_page
+    click_on "Create Task"
+    expect(page).to have_content "Due date has already passed"
+  end
 end

@@ -1,3 +1,4 @@
+![](https://travis-ci.org/etmoore/gCamp.svg)
 #gCamp#
 ##Project Management Made Easy##
 

@@ -52,7 +52,7 @@ feature "Tasks" do
     visit tasks_path
     click_on "Create Task"
     fill_in "Description", with: "Past task"
-    fill_in "Due", with: Date.yesterday
+    fill_in "Due", with: Date.today - 1
     click_on "Create Task"
     expect(page).to have_content "Due date has already passed"
   end

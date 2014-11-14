@@ -1,9 +1,5 @@
 = form_for(@task, html: {class: "form-horizontal", role: "form"}) do |f|
-  - if @task.errors.any?
-    #error_explanation.alert.alert-danger
-      %strong= pluralize(@task.errors.count, "error") + " prevented this form from being saved"
-      - @task.errors.full_messages.each do |message|
-        %p= message
+  =render 'shared/errors', model: @task
 
   .form-group
     = f.label :description, class: "col-sm-2 control-label"

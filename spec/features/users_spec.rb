@@ -39,4 +39,18 @@ feature "Users" do
     click_on "Create User"
     expect(page).to have_content "Email has already been taken"
   end
+
+  scenario "user edits a user" do
+    User.create first_name: 'Bob', last_name: 'Evans', email: 'bevans@example.com',
+                password: 'bacon', password_confirmation: 'bacon'
+    visit users_path
+    click_on "Edit"
+    fill_in "First name", with: "Bob"
+    fill_in "Last name", with: "Cookabara"
+    fill_in "Email", with: "jschmoe@example.com"
+    fill_in "Password", with: 'testy'
+    fill_in "Password confirmation", with: 'testy'
+    click_on "Update User"
+    expect(page).to have_content "Bob"
+  end
 end

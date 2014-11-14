@@ -53,4 +53,16 @@ feature "Users" do
     click_on "Update User"
     expect(page).to have_content "Bob"
   end
+
+  scenario "user deletes a user" do
+    User.create first_name: 'Bob', last_name: 'Evans', email: 'bevans@example.com',
+                password: 'bacon', password_confirmation: 'bacon'
+    visit users_path
+    click_on "Edit"
+    click_on "Delete User"
+    expect(page).to have_content "User was successfully destroyed."
+    expect(page).to have_no_content "Bob"
+  end
+
+
 end

@@ -3,6 +3,8 @@ class Task < ActiveRecord::Base
   validates :description, presence: true
   validate :not_past_due
 
+  belongs_to :project
+
   def not_past_due
     if self.due.present? && past_due_date?
       errors.add(:due, 'date has already passed')

@@ -1,0 +1,4 @@
+=form_for [@membership.project, @membership], url: project_memberships_path, html: {role: 'form', class: "well form-inline"} do |f|
+  =f.collection_select :user_id, User.all, :id, :full_name, {include_blank: "Please select a user..."}, {class: 'form-control'}
+  =f.select :role, ["Member", "Owner"], {}, {class: 'form-control'}
+  =f.submit 'Add New Member', class: "btn btn-primary"

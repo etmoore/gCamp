@@ -1,14 +1,14 @@
 class MembershipsController < ApplicationController
   before_action :set_project
   def index
-    @memberships = @project.memberships
     @membership = Membership.new
+    @memberships = @project.memberships
   end
 
   def create
     @membership = @project.memberships.new(params.require(:membership).permit(:role, :user_id))
     if @membership.save
-      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} added successfully"
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} added successfully"
     else
       render :index
     end

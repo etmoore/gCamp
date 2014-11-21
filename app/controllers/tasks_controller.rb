@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
 
   # GET /tasks
   # GET /tasks.json
@@ -15,7 +16,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = @project.tasks.new
   end
 
   # GET /tasks/1/edit
@@ -25,7 +26,7 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = @project.tasks.new(task_params)
     if @task.save
       redirect_to @task, notice: 'Task was successfully created.'
     else
@@ -59,8 +60,12 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_project
+      @project = Project.find(params[:project_id])
+    end
+
     def set_task
-      @task = Task.find(params[:id])
+      @task = @projects.tasks.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -73,7 +78,7 @@ class TasksController < ApplicationController
     end
 
     def sort_column
-      Task.column_names.include?(params[:sort]) ? params[:sort] : "due"
+      @project.tasks.column_names.include?(params[:sort]) ? params[:sort] : "due"
     end
 
     def sort_direction
@@ -81,6 +86,6 @@ class TasksController < ApplicationController
     end
 
     def order_and_paginate_tasks
-      Task.order("#{sort_column} #{sort_direction}").page(params[:page])
+      @project.tasks.order("#{sort_column} #{sort_direction}").page(params[:page])
     end
 end

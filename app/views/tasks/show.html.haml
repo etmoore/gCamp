@@ -1,6 +1,12 @@
-%div
-  %strong Description:
-  = @task.description
+.page-header.row.center-row
+  %h1.col-sm-11.center=@task.description
+  .col-sm-1.center= link_to 'Edit', edit_project_task_path(@project, @task), class: "btn btn-primary"
+
+%ol.breadcrumb
+  %li=link_to "Projects", projects_path
+  %li=link_to @project.name, project_path(@project)
+  %li=link_to "Tasks", project_tasks_path(@project)
+  %li.active Show
 
 %div
   %strong Complete:
@@ -11,6 +17,4 @@
     %strong Due:
     = @task.due.strftime('%m/%d/%Y')
 
-= link_to 'Edit', edit_project_task_path(@project, @task)
-|
-= link_to 'All Tasks', project_tasks_path
+%h2 Comments

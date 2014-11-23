@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
   validate :not_past_due
 
   belongs_to :project
+  has_many :comments
 
   def not_past_due
     if self.due.present? && past_due_date?

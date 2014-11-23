@@ -11,6 +11,6 @@
     %strong Due:
     = @task.due.strftime('%m/%d/%Y')
 
-= link_to 'Edit', edit_task_path(@task)
+= link_to 'Edit', edit_project_task_path(@project, @task)
 |
-= link_to 'All Tasks', tasks_path
+= link_to 'All Tasks', project_tasks_path

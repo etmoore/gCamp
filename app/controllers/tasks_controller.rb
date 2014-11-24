@@ -3,8 +3,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = order_and_paginate_tasks.where(complete: false)
-    @tasks = order_and_paginate_tasks if show_completed?
+    if show_completed?
+      order_and_paginate_tasks
+    else
+      order_and_paginate_tasks.where(complete: false)
+    end
   end
 
   def show

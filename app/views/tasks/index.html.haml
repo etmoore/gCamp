@@ -26,14 +26,12 @@
   %tbody
     - @project.tasks.each do |task|
       %tr{class: ("danger" if task.due_soon?)}
-        %td= task.description
+        %td= link_to task.description, project_task_path(@project, task)
         %td= task.complete
         %td
           - if task.due
             = task.due.strftime('%m/%d/%Y')
         %td
           .pull-right
-            = link_to 'Show', project_task_path(@project, task), class: "btn btn-success"
             = link_to 'Edit', edit_project_task_path(@project, task), class: "btn btn-primary"
             = link_to 'Destroy', project_task_path(@project, task), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
-= paginate @tasks

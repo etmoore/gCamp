@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tasks, :memberships
   end
+  resources :comments, only: :create
 
   root "homepage#show"
   get "about" => "about#show", as: :about

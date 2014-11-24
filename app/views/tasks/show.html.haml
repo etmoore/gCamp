@@ -1,6 +1,6 @@
 .page-header.row.center-row
   %h1.col-sm-11.center=@task.description
-  .col-sm-1.center= link_to 'Edit', edit_project_task_path(@project, @task), class: "btn btn-primary"
+  .col-sm-1.center=link_to 'Edit', edit_project_task_path(@project, @task), class: "btn btn-info"
 
 %ol.breadcrumb
   %li=link_to "Projects", projects_path
@@ -18,3 +18,19 @@
     = @task.due.strftime('%m/%d/%Y')
 
 %h2 Comments
+- @comments.each do |comment|
+  .row
+    .col-md-3
+      = link_to comment.user.full_name, user_path(comment.user)
+      .text-muted= time_ago_in_words(comment.created_at)
+    .col-md-9
+      = comment.comment
+- if current_user
+  .col-md-offset-3.col-md-9
+    = form_for @comment, url: comments_path, html: {class: "form-horizontal"} do |f|
+      = f.hidden_field :project_id, value: @project.id
+      = f.hidden_field :task_id, value: @task.id
+      .form-group
+        = f.text_area :comment, class: "form-control"
+      .form-group
+        = f.submit "Add Comment", class: "btn btn-primary"

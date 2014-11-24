@@ -26,7 +26,9 @@
   %tbody
     - @project.tasks.each do |task|
       %tr{class: ("danger" if task.due_soon?)}
-        %td= link_to task.description, project_task_path(@project, task)
+        %td
+          = link_to task.description, project_task_path(@project, task)
+          %span.badge= task.comments.count
         %td= task.complete
         %td
           - if task.due

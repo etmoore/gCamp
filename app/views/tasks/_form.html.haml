@@ -1,5 +1,6 @@
-= form_for @task, url: project_tasks_path, html: {class: "form-horizontal", role: "form"} do |f|
-  =render 'shared/errors', model: @task
+= form_for [@project, @task], html: {class: "form-horizontal", role: "form"} do |f|
+  .col-sm-offset-2
+    =render 'shared/errors', model: @task
 
   .form-group
     = f.label :description, class: "col-sm-2 control-label"

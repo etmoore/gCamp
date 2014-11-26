@@ -6,4 +6,10 @@ describe Task do
     task.valid?
     expect(task.errors[:due].present?).to eq(true)
   end
+
+  it "validates that the task has a description" do
+    task = Task.new
+    task.valid?
+    expect(task.errors[:due].present?).to eq(true)
+  end
 end

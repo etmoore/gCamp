@@ -1,8 +1,12 @@
 require 'rails_helper'
 
 feature "Tasks" do
+  before :each do
+    @project = create_project
+  end
+
   scenario "User creates a task" do
-    visit tasks_path
+    visit project_tasks_path(@project)
     click_on "Create Task"
     fill_in "Description", with: "test task"
     fill_in "Due", with: Date.today + 7
@@ -12,8 +16,8 @@ feature "Tasks" do
   end
 
   scenario "User marks a task complete" do
-    task = Task.create description: "test", due: Date.today + 7
-    visit task_path(task)
+    task = @project.tasks.create description: "test", due: Date.today + 7
+    visit project_task_path(@project, task)
     click_on "Edit"
     check "Complete"
     click_on "Update Task"
@@ -21,16 +25,16 @@ feature "Tasks" do
   end
 
   scenario "User deletes a task" do
-    Task.create description: "test", due: Date.today + 7
-    visit tasks_path
+    @project.tasks.create description: "test", due: Date.today + 7
+    visit project_tasks_path(@project)
     expect(page).to have_content "test"
-    click_on "Destroy"
+    find(".glyphicon-remove").click
     expect(page).to have_no_content "test"
   end
 
   scenario "User edits a task description and date" do
-    task = Task.create description: "test", due: "01/12/2014"
-    visit task_path(task)
+    task = @project.tasks.create description: "test", due: "01/12/2014"
+    visit project_task_path(@project, task)
     expect(page).to have_content "test"
     expect(page).to have_content "12/01/2014"
     click_on "Edit"
@@ -42,14 +46,14 @@ feature "Tasks" do
   end
 
   scenario "User attempts to create a task without a description" do
-    visit tasks_path
+    visit project_tasks_path(@project)
     click_on "Create Task"
     click_on "Create Task"
     expect(page).to have_content "Description can't be blank"
   end
 
   scenario "User attempts to create a task due in the past" do
-    visit tasks_path
+    visit project_tasks_path(@project)
     click_on "Create Task"
     fill_in "Description", with: "Past task"
     fill_in "Due", with: Date.today - 1

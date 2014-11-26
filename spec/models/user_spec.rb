@@ -9,4 +9,11 @@ describe User do
     dup_user.valid?
     expect(dup_user.errors[:email].present?).to eq(true)
   end
+
+  it "Validates first_name and last_Name presence" do
+    user = User.new
+    user.valid?
+    expect(user.errors[:first_name].present?).to eq(true)
+    expect(user.errors[:last_name].present?).to eq(true)
+  end
 end

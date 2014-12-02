@@ -60,4 +60,14 @@ feature "Tasks" do
     click_on "Create Task"
     expect(page).to have_content "Due date has already passed"
   end
+
+  scenario "(deleted user) shows up when the User who wrote a comment gets destroyed" do
+    user = create_user
+    project = create_project
+    task = project.tasks.create( description: "test project" )
+    task.comments.create( user_id: user, comment: "test comment")
+    user.destroy
+    visit project_task_path(project, task)
+    expect(page).to have_content "(deleted user)"
+  end
 end

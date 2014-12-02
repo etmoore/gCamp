@@ -16,4 +16,14 @@ describe User do
     expect(user.errors[:first_name].present?).to eq(true)
     expect(user.errors[:last_name].present?).to eq(true)
   end
+
+  it "Deletes associated memberships and nullifies comment user_id when deleted" do
+    project = create_project
+    user = create_user
+    task = project.tasks.create( description: "test" )
+    comment = task.comments.create( comment: "this is a comment!",
+                                    user_id: user )
+    user.destroy
+    expect(comment.user_id).to eq(nil)
+  end
 end

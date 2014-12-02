@@ -19,7 +19,7 @@
 
 %h2 Comments
 - @comments.each do |comment|
-  .row
+  .row.comment
     .col-md-3
       = link_to comment.user.full_name, user_path(comment.user)
       .text-muted= time_ago_in_words(comment.created_at)

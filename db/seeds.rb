@@ -1,5 +1,11 @@
 User.delete_all
 
+User.create first_name: 'test',
+            last_name: 'user',
+            email: 'test@example.com',
+            password: 'password'
+            password_confirmation: 'password'
+
 30.times do
   first_name = Faker::Name.first_name
   password = Faker::Internet.password

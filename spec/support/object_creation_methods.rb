@@ -23,12 +23,16 @@ module ObjectCreationMethods
     new_user(overrides).tap(&:save!)
   end
 
-  def create_membership(overrides = {})
+  def new_membership(overrides = {})
     defaults = {
       user: new_user,
       project: new_project,
       role: "Member"
     }
-    Membership.create!(defaults.merge(overrides))
+    Membership.new(defaults.merge(overrides))
+  end
+
+  def create_membership(overrides = {})
+    new_membership(overrrides).tap(&:save!)
   end
 end

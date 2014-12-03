@@ -12,4 +12,13 @@ describe Membership do
     membership.valid?
     expect(membership.errors[:user].present?).to eq(true)
   end
+
+  it "validates user uniqueness" do
+    user = create_user
+    project = create_project
+    membership = create_membership user: user, project: project
+    dup_membership = new_membership user: user, project: project
+    dup_membership.valid?
+    expect(dup_membership.errors[:user].present?).to eq(true)
+  end
 end

@@ -9,12 +9,14 @@
     %tr
       %th Name
       %th Tasks
+      %th Memberships
       %th
   %tbody
     - @projects.each do |project|
       %tr
         %td=link_to project.name, project
         %td=link_to project.tasks.count, project_tasks_path(project)
+        %td=link_to project.memberships.count, project_memberships_path(project)
         %td
           .pull-right
             = link_to 'Edit', edit_project_path(project), class: "btn btn-primary"

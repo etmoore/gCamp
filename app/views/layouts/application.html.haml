@@ -22,14 +22,13 @@
             %span.icon-bar
             %span.icon-bar
           = link_to "gCamp", root_path, class: "navbar-brand"
-        #navbar
-          %ul.nav.navbar-nav.navbar-right
-            - if current_user
-              %li= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user)
-              %li= link_to "Sign Out", signout_path
-            - else
-              %li= link_to "Sign Up", signup_path
-              %li= link_to "Sign In", signin_path
+        %ul.nav.navbar-nav.navbar-right
+          - if current_user
+            %li= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user)
+            %li= link_to "Sign Out", signout_path
+          - else
+            %li= link_to "Sign Up", signup_path
+            %li= link_to "Sign In", signin_path
 
     .container
       - unless notice.nil?

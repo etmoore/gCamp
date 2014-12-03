@@ -39,13 +39,13 @@ $galvanize-orange: #FF9900;
 
 // Bootstrap override
 .table tbody>tr>td{
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 a.disabled {
-   pointer-events: none;
-   cursor: default;
-   color: #999;
+  pointer-events: none;
+  cursor: default;
+  color: #999;
 }
 
 html {
@@ -121,4 +121,13 @@ body {
 
 .comment {
   margin-bottom: 18px;
+}
+
+.membership-form {
+  padding-bottom: 10px;
+  div {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+  }
 }

@@ -33,16 +33,16 @@ feature "Tasks" do
   end
 
   scenario "User edits a task description and date" do
-    task = @project.tasks.create description: "test", due: "01/12/2014"
+    task = @project.tasks.create description: "test", due: Date.today + 7
     visit project_task_path(@project, task)
     expect(page).to have_content "test"
-    expect(page).to have_content "12/01/2014"
+    expect(page).to have_content (Date.today + 7).strftime('%m/%d/%Y')
     click_on "Edit"
     fill_in "Description", with: "test edited"
-    fill_in "Due", with: "02/12/2014"
+    fill_in "Due", with: Date.today + 8
     click_on "Update Task"
     expect(page).to have_content "test edited"
-    expect(page).to have_content "12/02/2014"
+    expect(page).to have_content (Date.today + 8).strftime('%m/%d/%Y')
   end
 
   scenario "User attempts to create a task without a description" do

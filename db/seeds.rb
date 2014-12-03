@@ -3,7 +3,7 @@ User.delete_all
 User.create first_name: 'test',
             last_name: 'user',
             email: 'test@example.com',
-            password: 'password'
+            password: 'password',
             password_confirmation: 'password'
 
 30.times do
@@ -14,5 +14,4 @@ User.create first_name: 'test',
               email: Faker::Internet.safe_email(first_name),
               password: password,
               password_confirmation: password
-
 end

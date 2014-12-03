@@ -33,6 +33,6 @@ module ObjectCreationMethods
   end
 
   def create_membership(overrides = {})
-    new_membership(overrrides).tap(&:save!)
+    new_membership(overrides).tap(&:save!)
   end
 end

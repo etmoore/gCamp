@@ -15,6 +15,7 @@
         in the bar, and we're always the ones shutting the place down. Human communication
         and collaboration is what drives us, and it infuses every feature of gCamp.
 
-%p gCamp is extremely active. Check out our killer stats below!
 
-%p= pluralize(@projects.count, "Project") + ", " + pluralize(@tasks.count, "Task") + ", " + pluralize(@memberships.count, "Project Member") + ", " + pluralize(@users.count, "User") + ", " + pluralize(@comments.count, "Comment")
+.about-stats
+  %p gCamp is extremely active. Check out our killer stats below!
+  %p= pluralize(@projects.count, "Project") + ", " + pluralize(@tasks.count, "Task") + ", " + pluralize(@memberships.count, "Project Member") + ", " + pluralize(@users.count, "User") + ", " + pluralize(@comments.count, "Comment")

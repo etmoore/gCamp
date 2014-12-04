@@ -52,27 +52,27 @@ role: 'member'
 task1 = Task.create!(
 description: "Write 3 comments",
 project: multiple_owners,
-due_date: 4.days.from_now
+due: 4.days.from_now
 )
 
 task2 = Task.create!(
 description: "Write 1 comment",
 project: multiple_owners,
-due_date: 5.days.from_now
+due: 5.days.from_now
 )
 
 3.times do
   Comment.create!(
   task: task1,
   user: owner,
-  body: Faker::Lorem.sentence
+  comment: Faker::Lorem.sentence
   )
 end
 
 Comment.create!(
 task: task2,
 user: member,
-body: Faker::Lorem.sentence
+comment: Faker::Lorem.sentence
 )
 
 single_owner = Project.create!(name: 'Single Owner')

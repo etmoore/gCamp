@@ -24,4 +24,21 @@ feature "Projects" do
     click_on "Create Project"
     expect(page).to have_content "Name can't be blank"
   end
+
+  scenario "User deletes a project from #show" do
+    project = create_project
+    rand(5).times do
+      create_membership project: project, user: create_user
+    end
+    rand(5).times do
+      create_task project: project
+    end
+    membership_count = Membership.all.count
+    task_count = Task.all.count
+    visit project_path(project)
+    warning_message = "Deleting this project will also delete " + membership_count.to_s + " membership".pluralize(membership_count) + ", " + task_count.to_s + " task".pluralize(task_count) + " and associated comments"
+    expect(page).to have_content warning_message
+    click_on "Delete"
+    expect(page).to have_content "Project was successfully deleted."
+  end
 end

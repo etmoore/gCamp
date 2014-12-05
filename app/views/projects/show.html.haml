@@ -1,14 +1,17 @@
 %ol.breadcrumb
   %li=link_to "Projects", projects_path
   %li.active=@project.name
-  
+
 .page-header
   .row.center-row
-    %h1.col-sm-10.center
+    %h1.col-sm-11.center
       = @project.name
-    .col-sm-2.center
+    .col-sm-1.center
       = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
-      = link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
 
 %p=link_to pluralize(@project.tasks.count, "Task"), project_tasks_path(@project)
 %p=link_to pluralize(@project.memberships.count, "Member"), project_memberships_path(@project)
+
+.well
+  %p="Deleting this project will also delete #{pluralize(@project.memberships.count, 'membership')}, #{pluralize(@project.tasks.count, 'task')} and associated comments."
+  = link_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

@@ -10,10 +10,10 @@ feature 'About page' do
   end
   scenario 'shows the count of projects, tasks, members, users, and comments' do
     visit about_path
-    expect(page).to have_content "#{@projects.count} " + "Project".pluralize(@projects.count)
-    expect(page).to have_content "#{@tasks.count} " + "Task".pluralize(@tasks.count)
-    expect(page).to have_content "#{@memberships.count} " + "Project Member".pluralize(@memberships.count)
-    expect(page).to have_content "#{@users.count} " + "User".pluralize(@users.count)
-    expect(page).to have_content "#{@comments.count} " + "Comment".pluralize(@comments.count)
+    expect(page).to have_content @projects.count.to_s + " Project".pluralize(@projects.count)
+    expect(page).to have_content @tasks.count.to_s + " Task".pluralize(@tasks.count)
+    expect(page).to have_content @memberships.count.to_s + " Project Member".pluralize(@memberships.count)
+    expect(page).to have_content @users.count.to_s + " User".pluralize(@users.count)
+    expect(page).to have_content @comments.count.to_s + " Comment".pluralize(@comments.count)
   end
 end

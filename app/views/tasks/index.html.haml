@@ -12,10 +12,10 @@
       direction: params[:direction])
     .col-sm-1.center
       = link_to 'Create Task', new_project_task_path, class: "btn btn-info"
-  %ol.breadcrumb
-    %li=link_to "Projects", projects_path
-    %li=link_to @project.name, project_path(@project)
-    %li.active="Tasks"
+%ol.breadcrumb
+  %li=link_to "Projects", projects_path
+  %li=link_to @project.name, project_path(@project)
+  %li.active="Tasks"
 %table.table
   %thead
     %tr

@@ -1,6 +1,9 @@
-.page-header.row.center-row
-  %h1.col-sm-11.center=@task.description
-  .col-sm-1.center=link_to 'Edit', edit_project_task_path(@project, @task), class: "btn btn-info"
+.page-header
+  .row.center-row
+    %h1.col-sm-11.center
+      =@task.description
+    .col-sm-1.center
+      =link_to 'Edit', edit_project_task_path(@project, @task), class: "btn btn-info"
 
 %ol.breadcrumb
   %li=link_to "Projects", projects_path

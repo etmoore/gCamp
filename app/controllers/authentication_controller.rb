@@ -1,4 +1,5 @@
 class AuthenticationController < ApplicationController
+  skip_before_action :ensure_logged_in
 
   def create
     user = User.find_by_email(params[:authentication][:email])

@@ -37,9 +37,18 @@
 
     %footer.page-footer
       .container
-        .link-wrapper.center-text
+        .link-wrapper
           = link_to_unless_current "about", about_path
           |
           = link_to_unless_current "terms", terms_path
           |
           = link_to_unless_current "FAQ", faq_path
+        .link-wrapper.pull-right
+          = link_to 'http://www.linkedin.com/in/etmoore1/', target: "_blank" do
+            = image_tag 'linkedin-logo.png'
+          = link_to 'https://github.com/etmoore', target: "_blank" do
+            = image_tag 'github-logo.png'
+          = link_to 'https://twitter.com/etmoore', target: "_blank" do
+            = image_tag 'twitter-logo.png'
+          = link_to 'https://students.gschool.it/students/91', target: "_blank" do
+            = image_tag 'gschool-logo.png'

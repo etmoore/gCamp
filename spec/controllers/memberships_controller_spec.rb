@@ -16,14 +16,14 @@ describe MembershipsController do
 
   describe '#create' do
     it 'redirects visitors to the sign-in page' do
-      get :create, project_id: @project
+      post :create, project_id: @project
       expect(response).to redirect_to(signin_path)
     end
   end
 
   describe '#update' do
     it 'redirects visitors to the signin page' do
-      get :update, project_id: @project, id: @membership
+      put :update, project_id: @project, id: @membership
       expect(response).to redirect_to(signin_path)
     end
   end

@@ -14,4 +14,12 @@ class ApplicationController < ActionController::Base
     redirect_to signin_path, notice: 'You must be logged in to access that action' unless current_user
   end
 
+  class AccessDenied < StandardError
+  end
+  rescue_from AccessDenied, with :render_404
+
+  def render_404
+    render 'public/404', status: :not_found, layout: false
+  end
+
 end

@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 feature "Projects" do
+  before do
+    user = create_user
+    sign_in user
+  end
+
   scenario "User creates a project" do
     visit projects_path
     click_on "Create Project"

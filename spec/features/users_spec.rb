@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 feature "Users" do
+  before do
+    @user = create_user
+    sign_in @user
+  end
+
   scenario "user creates a new user" do
     visit users_path
     click_on "New User"
@@ -41,8 +46,6 @@ feature "Users" do
   end
 
   scenario "user edits a user" do
-    User.create first_name: 'Bob', last_name: 'Evans', email: 'bevans@example.com',
-                password: 'bacon', password_confirmation: 'bacon'
     visit users_path
     click_on "Edit"
     fill_in "First name", with: "Bob"
@@ -55,10 +58,8 @@ feature "Users" do
   end
 
   scenario "user deletes a user" do
-    User.create first_name: 'Bob', last_name: 'Evans', email: 'bevans@example.com',
-                password: 'bacon', password_confirmation: 'bacon'
-    visit users_path
-    click_on "Edit"
+    doomed_user = create_user
+    visit edit_user_path(doomed_user)
     click_on "Delete User"
     expect(page).to have_content "User was successfully destroyed."
     expect(page).to have_no_content "Bob"

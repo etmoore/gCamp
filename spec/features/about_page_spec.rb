@@ -7,6 +7,8 @@ feature 'About page' do
     @memberships = Membership.all
     @users = User.all
     @comments = Comment.all
+    user = create_user
+    sign_in user
   end
   scenario 'shows the count of projects, tasks, members, users, and comments' do
     visit about_path

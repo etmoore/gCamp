@@ -3,6 +3,8 @@ require 'rails_helper'
 feature "Tasks" do
   before :each do
     @project = create_project
+    user = create_user
+    sign_in user
   end
 
   scenario "User creates a task" do

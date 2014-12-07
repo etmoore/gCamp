@@ -1,4 +1,4 @@
-class AboutController < ApplicationController
+class AboutController < MarketingController
 
   def show
     @projects = Project.all

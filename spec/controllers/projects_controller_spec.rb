@@ -7,6 +7,11 @@ describe ProjectsController do
   end
 
   describe '#index' do
+    it 'renders the index template' do
+      session[:user_id] = create_user.id
+      get :index
+      expect(response).to render_template('index')
+    end
     it 'redirects visitors to the sign-in page' do
       get :index
       expect(response).to redirect_to(signin_path)

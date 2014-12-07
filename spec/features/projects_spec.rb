@@ -2,8 +2,16 @@ require 'rails_helper'
 
 feature "Projects" do
   before do
-    user = create_user
-    sign_in user
+    @user = create_user
+    sign_in @user
+  end
+
+  scenario "users can only see projects that they are members of" do
+    membership = create_membership user: @user
+    non_membership = create_membership
+    visit projects_path
+    expect(page).to have_content membership.project.name
+    expect(page).to have_no_content non_membership.project.name
   end
 
   scenario "User creates a project" do
@@ -15,7 +23,8 @@ feature "Projects" do
   end
 
   scenario "User edits a project" do
-    Project.create name: "woo!"
+    project = create_project name: "woo!"
+    membership = create_membership project: project, user: @user
     visit projects_path
     click_on "Edit"
     fill_in "Name", with: "woo two!"

@@ -1,5 +1,4 @@
-class RegistrationsController < ApplicationController
-  skip_before_action :require_signin
+class RegistrationsController < MarketingController
 
   def new
     @user = User.new

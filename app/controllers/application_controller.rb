@@ -7,19 +7,20 @@ class ApplicationController < ActionController::Base
   def current_user
     User.find_by(id: session[:user_id])
   end
-
   helper_method :current_user
 
   def require_signin
-    redirect_to signin_path, notice: 'You must be logged in to access that action' unless current_user
+    unless current_user
+      redirect_to signin_path, notice: 'You must be logged in to access that action'
+    end
   end
 
   class AccessDenied < StandardError
   end
-  rescue_from AccessDenied, with :render_404
+  rescue_from AccessDenied, with: :render_404
 
   def render_404
-    render 'public/404', status: :not_found, layout: false
+    render 'public/404', status: 404, layout: false
   end
 
 end

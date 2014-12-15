@@ -1,9 +1,12 @@
 class MembershipsController < ApplicationController
   before_action :set_project
+  before_action :members_only, only: [:index]
 
   def index
     @membership = Membership.new
     @memberships = @project.memberships
+    @current_user = current_user
+    @current_user_owner = current_user_owner?
   end
 
   def create
@@ -26,8 +29,12 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership = @project.memberships.find(params[:id])
-    @membership.destroy
-    redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was removed successfully"
+    if current_user_owner?
+      @membership.destroy
+      redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was removed successfully"
+    else
+      raise AccessDenied
+    end
   end
 
   private
@@ -36,7 +43,17 @@ class MembershipsController < ApplicationController
       @project = Project.find(params[:project_id])
     end
 
+    def current_user_owner?
+      @project.memberships.find_by(user_id: current_user.id, role: 'owner')
+    end
+
     def membership_params
       params.require(:membership).permit(:role, :user_id)
+    end
+
+    def members_only
+      unless @project.memberships.pluck(:user_id).include?(current_user.id)
+        raise AccessDenied
+      end
     end
 end

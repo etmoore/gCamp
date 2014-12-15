@@ -39,8 +39,9 @@ feature "Projects" do
     expect(page).to have_content "Name can't be blank"
   end
 
-  scenario "User deletes a project from #show" do
+  scenario "Owner deletes a project from #show page" do
     project = create_project
+    owner = create_membership project: project, user: @user, role: 'owner'
     rand(5).times do
       create_membership project: project, user: create_user
     end

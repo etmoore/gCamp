@@ -4,6 +4,7 @@ describe ProjectsController do
 
   before [:show, :edit, :update, :destroy] do
     @project = create_project
+    @user = create_user
   end
 
   describe '#index' do
@@ -44,6 +45,18 @@ describe ProjectsController do
       post :create
       expect(response).to redirect_to(signin_path)
     end
+    it 'makes the creator of the project the owner' do
+      session[:user_id] = @user.id
+      project_params = {project: {name: 'test project'}}
+      post :create, project_params
+      expect(Membership.last.role).to eq('owner')
+    end
+    it 'redirects to the tasks index after a user creates a project' do
+      session[:user_id] = @user.id
+      project_params = {project: {name: 'test project'}}
+      post :create, project_params
+      expect(response).to redirect_to project_tasks_path(Project.last)
+    end
   end
 
   describe '#update' do
@@ -57,6 +70,20 @@ describe ProjectsController do
     it 'redirects visitors to the sign-in page' do
       delete :destroy, id: @project
       expect(response).to redirect_to(signin_path)
+    end
+    it 'raises AccessDenied when a non-owner tries to delete a project' do
+      user = create_user
+      non_owner = create_membership project: @project, user: user, role: 'member'
+      session[:user_id] = user.id
+      delete :destroy, id: @project
+      expect(response.status).to eq(404)
+    end
+    it 'allows owners to delete projects - redirects to projects index' do
+      user = create_user
+      owner = create_membership project: @project, user: user, role: 'owner'
+      session[:user_id] = user.id
+      delete :destroy, id: @project
+      expect(response).to redirect_to(projects_path)
     end
   end
 end

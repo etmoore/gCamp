@@ -1,6 +1,7 @@
 = form_for [@project, @task], html: {class: "form-horizontal", role: "form"} do |f|
-  .col-sm-offset-2
-    =render 'shared/errors', model: @task
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      =render 'shared/errors', model: @task
 
   .form-group
     = f.label :description, class: "col-sm-2 control-label"
@@ -11,7 +12,6 @@
     = f.label :due, class: "col-sm-2 control-label"
     .col-sm-2
       = f.date_field :due, class: "form-control"
-    %span.glyphicon.glyphicon-calendar
 
   - if @task.id?
     .form-group

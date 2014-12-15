@@ -1,6 +1,7 @@
 = form_for(@user, html: {class: "form-horizontal", role: "form"}) do |f|
-  .col-sm-offset-2
-    =render 'shared/errors', model: @user
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      =render 'shared/errors', model: @user
 
   .form-group
     = f.label :first_name, class: "col-sm-2 control-label"

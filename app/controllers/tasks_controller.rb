@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_project
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :members_only
 
   def index
     if show_completed?
@@ -45,6 +46,7 @@ class TasksController < ApplicationController
   end
 
   private
+
     def set_project
       @project = Project.find(params[:project_id])
     end
@@ -71,5 +73,11 @@ class TasksController < ApplicationController
 
     def order_and_paginate_tasks
       @project.tasks.order("#{sort_column} #{sort_direction}").page(params[:page])
+    end
+
+    def members_only
+      unless @project.memberships.pluck(:user_id).include?(current_user.id)
+        raise AccessDenied
+      end
     end
 end

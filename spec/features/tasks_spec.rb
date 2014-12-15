@@ -3,8 +3,9 @@ require 'rails_helper'
 feature "Tasks" do
   before :each do
     @project = create_project
-    user = create_user
-    sign_in user
+    @user = create_user
+    @member = create_membership project: @project, user: @user, role: 'member'
+    sign_in @user
   end
 
   scenario "User creates a task" do
@@ -65,11 +66,10 @@ feature "Tasks" do
 
   scenario "(deleted user) shows up when the User who wrote a comment gets destroyed" do
     user = create_user
-    project = create_project
-    task = project.tasks.create( description: "test project" )
+    task = @project.tasks.create( description: "test project" )
     task.comments.create( user_id: user, comment: "test comment")
     user.destroy
-    visit project_task_path(project, task)
+    visit project_task_path(@project, task)
     expect(page).to have_content "(deleted user)"
   end
 end

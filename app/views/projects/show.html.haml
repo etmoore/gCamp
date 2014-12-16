@@ -4,7 +4,8 @@
     %h1.col-sm-11.center
       = @project.name
     .col-sm-1.center
-      = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
+      -if @current_user_owner
+        = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
 
 %ol.breadcrumb
   %li=link_to "Projects", projects_path

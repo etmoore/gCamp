@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    raise AccessDenied unless current_user_owner?
   end
 
   def new
@@ -27,6 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    raise AccessDenied unless current_user_owner?
     if @project.update(project_params)
       redirect_to @project, notice: 'Project was successfully updated.'
     else

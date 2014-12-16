@@ -22,9 +22,9 @@ feature "Projects" do
     expect(page).to have_content "Take over the world"
   end
 
-  scenario "User edits a project" do
+  scenario "Owner edits a project" do
     project = create_project name: "woo!"
-    membership = create_membership project: project, user: @user
+    membership = create_membership project: project, user: @user, role: 'owner'
     visit projects_path
     click_on "Edit"
     fill_in "Name", with: "woo two!"

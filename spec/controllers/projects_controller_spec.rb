@@ -5,6 +5,12 @@ describe ProjectsController do
   before [:show, :edit, :update, :destroy] do
     @project = create_project
     @user = create_user
+
+    @member = create_user
+    create_membership project: @project, user: @member, role: 'member'
+
+    @owner = create_user
+    create_membership project: @project, user: @owner, role: 'owner'
   end
 
   describe '#index' do
@@ -30,6 +36,16 @@ describe ProjectsController do
     it 'redirects visitors to the sign-in page' do
       get :edit, id: @project
       expect(response).to redirect_to(signin_path)
+    end
+    it 'renders 404 for non-owner members' do
+      session[:user_id] = @member.id
+      get :edit, id: @project
+      expect(response.status).to eq(404)
+    end
+    it 'renders the edit view for owners' do
+      session[:user_id] = @owner.id
+      get :edit, id: @project
+      expect(response).to be_success
     end
   end
 
@@ -63,6 +79,16 @@ describe ProjectsController do
     it 'redirects visitors to the sign-in page' do
       put :update, id: @project
       expect(response).to redirect_to(signin_path)
+    end
+    it 'renders 404 for non-owner members' do
+      session[:user_id] = @member.id
+      put :update, id: @project, project: {name: 'test'}
+      expect(response.status).to eq(404)
+    end
+    it 'redirects to the product show page for owners' do
+      session[:user_id] = @owner.id
+      put :update, id: @project, project: {name: 'test'}
+      expect(response).to redirect_to(@project)
     end
   end
 

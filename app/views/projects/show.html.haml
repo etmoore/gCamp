@@ -1,11 +1,6 @@
-
-.page-header
-  .row.center-row
-    %h1.col-sm-11.center
-      = @project.name
-    .col-sm-1.center
-      -if @current_user_owner
-        = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
+= page_header @project.name do
+  -if @current_user_owner
+    = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
 
 %ol.breadcrumb
   %li=link_to "Projects", projects_path

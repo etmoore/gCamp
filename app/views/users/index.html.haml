@@ -1,9 +1,6 @@
-.page-header
-  .row.center-row
-    %h1.col-sm-11.center
-      Users
-    .col-sm-1.center
-      = link_to 'New User', new_user_path, class: "btn btn-info"
+= page_header "Users" do
+  = link_to 'New User', new_user_path, class: "btn btn-info"
+
 %table.table
   %thead
     %tr

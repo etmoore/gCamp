@@ -1,9 +1,5 @@
-.page-header
-  .row.center-row
-    %h1.col-sm-11.center
-      = "#{@user.first_name} #{@user.last_name}"
-    .col-sm-1.center
-      = link_to 'Edit User', edit_user_path(@user), class: "btn btn-info"
+= page_header "#{@user.first_name} #{@user.last_name}" do
+  = link_to 'Edit User', edit_user_path(@user), class: "btn btn-info"
 
 %dl.dl-horizontal
   %dt First Name

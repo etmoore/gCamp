@@ -1,17 +1,13 @@
-.page-header
-  .row.center-row
-    %h1.col-sm-9.center
-      Tasks
-    .col-sm-2.center
-      = link_to_unless params[:show_completed],
-        'All', project_tasks_path(show_completed: true, sort: params[:sort],
-        direction: params[:direction])
-      |
-      = link_to_if params[:show_completed],
-      'Incomplete', project_tasks_path(show_completed: nil, sort: params[:sort],
-      direction: params[:direction])
-    .col-sm-1.center
-      = link_to 'Create Task', new_project_task_path, class: "btn btn-info"
+= page_header "Tasks" do
+  = link_to_unless params[:show_completed],
+    'All', project_tasks_path(show_completed: true, sort: params[:sort],
+    direction: params[:direction])
+  |
+  = link_to_if params[:show_completed],
+  'Incomplete', project_tasks_path(show_completed: nil, sort: params[:sort],
+  direction: params[:direction])
+  = link_to 'Create Task', new_project_task_path, class: "btn btn-info"
+
 %ol.breadcrumb
   %li=link_to "Projects", projects_path
   %li=link_to @project.name, project_path(@project)

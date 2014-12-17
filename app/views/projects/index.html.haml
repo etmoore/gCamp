@@ -1,9 +1,6 @@
-.page-header
-  .row.center-row
-    %h1.col-sm-11.center
-      Projects
-    .col-sm-1.center
-      = link_to 'Create Project', new_project_path, class: "btn btn-info"
+= page_header "Projects" do
+  = link_to 'New Project', new_project_path, class: "btn btn-primary"
+
 %table.table
   %thead
     %tr

@@ -1,6 +1,5 @@
-.page-header
-  .row.center-row
-    %h1.center.col-md-12="#{@project.name}: Manage Members"
+= page_header "#{@project.name}: Manage Members"
+
 %ol.breadcrumb
   %li=link_to "Projects", projects_path
   %li=link_to @project.name, project_path(@project)

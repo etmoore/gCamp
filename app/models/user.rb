@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :projects, through: :memberships
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  def admin?
+    self.admin
   end
 end

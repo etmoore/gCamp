@@ -65,5 +65,14 @@ feature "Users" do
     expect(page).to have_no_content "Bob"
   end
 
+  scenario "admin checkbox only appears for admins" do
+    visit new_user_path
+    expect(page).to have_no_content "Admin"
+
+    @admin = create_user admin: true
+    sign_in(@admin)
+    visit new_user_path
+    expect(page).to have_content "Admin"
+  end
 
 end

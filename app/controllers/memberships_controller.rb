@@ -11,6 +11,7 @@ class MembershipsController < ApplicationController
 
   def create
     @membership = @project.memberships.new(membership_params)
+    raise AccessDenied unless current_user_owner? || current_user.admin?
     if @membership.save
       redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was added successfully"
     else
@@ -20,6 +21,7 @@ class MembershipsController < ApplicationController
 
   def update
     @membership = @project.memberships.find(params[:id])
+    raise AccessDenied unless current_user_owner? || current_user.admin?
     if @membership.update(membership_params)
       redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was updated successfully"
     else
@@ -29,7 +31,7 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership = @project.memberships.find(params[:id])
-    if current_user_owner?
+    if current_user_owner? || current_user.admin? || @membership.user.id == current_user.id
       @membership.destroy
       redirect_to project_memberships_path, notice: "#{@membership.user.full_name} was removed successfully"
     else
@@ -44,7 +46,7 @@ class MembershipsController < ApplicationController
     end
 
     def current_user_owner?
-      @project.memberships.find_by(user_id: current_user.id, role: 'owner')
+      @project.memberships.find_by(user_id: current_user.id, role: 'owner') || current_user.admin?
     end
 
     def membership_params
@@ -52,7 +54,7 @@ class MembershipsController < ApplicationController
     end
 
     def members_only
-      unless @project.memberships.pluck(:user_id).include?(current_user.id)
+      unless @project.memberships.pluck(:user_id).include?(current_user.id) || current_user.admin?
         raise AccessDenied
       end
     end

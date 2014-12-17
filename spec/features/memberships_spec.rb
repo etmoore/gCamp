@@ -4,13 +4,19 @@ feature 'Memberships' do
   before do
     @user = create_user
     @project = create_project
-    create_membership project: @project, user: @user, role: 'owner'
-    @member_user = create_user
-    sign_in @user
+
+    @owner = create_user
+    create_membership project: @project, user: @owner, role: 'owner'
+
+    @member = create_user
+    create_membership project: @project, user: @member, role: 'member'
   end
-  scenario 'User creates a membership' do
+
+  scenario 'Owner creates a membership' do
+    sign_in @owner
+
     visit project_memberships_path(@project)
-    select @member_user.full_name, from: "membership_user_id"
+    select @user.full_name, from: "membership_user_id"
     within ".well" do
       select "Member", from: "membership_role"
     end
@@ -19,11 +25,19 @@ feature 'Memberships' do
   end
 
   scenario 'Owner deletes a membership' do
-    create_membership project: @project, user: @member_user, role: 'member'
+    sign_in @owner
+
     visit project_memberships_path(@project)
-    expect(page).to have_content @user.full_name
+    expect(page).to have_content @member.full_name
     remove_icons = page.all(".glyphicon-remove")
     remove_icons[1].click
-    expect(page).to have_content "#{@member_user.full_name} was removed successfully"
+    expect(page).to have_content "#{@member.full_name} was removed successfully"
+  end
+
+  scenario 'Member does not see forms on memberships index' do
+    sign_in @member
+
+    visit project_memberships_path(@project)
+    expect(page).to have_no_content "Add New Member"
   end
 end

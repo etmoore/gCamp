@@ -56,6 +56,6 @@ class ProjectsController < ApplicationController
     end
 
     def current_user_owner?
-      @project.memberships.find_by(user_id: current_user.id, role: 'owner')
+      @project.memberships.find_by(user_id: current_user.id, role: 'owner') || current_user.admin?
     end
 end

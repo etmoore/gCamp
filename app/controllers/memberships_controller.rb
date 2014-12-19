@@ -5,7 +5,6 @@ class MembershipsController < ApplicationController
   def index
     @membership = Membership.new
     @memberships = @project.memberships
-    @current_user = current_user
     @current_user_owner = current_user_owner?
   end
 
@@ -48,6 +47,7 @@ class MembershipsController < ApplicationController
     def current_user_owner?
       @project.memberships.find_by(user_id: current_user.id, role: 'owner') || current_user.admin?
     end
+    helper_method :current_user_owner?
 
     def membership_params
       params.require(:membership).permit(:role, :user_id)

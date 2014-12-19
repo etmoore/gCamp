@@ -76,7 +76,7 @@ class TasksController < ApplicationController
     end
 
     def members_only
-      unless @project.memberships.pluck(:user_id).include?(current_user.id)
+      unless @project.memberships.pluck(:user_id).include?(current_user.id) || current_user.admin?
         raise AccessDenied
       end
     end

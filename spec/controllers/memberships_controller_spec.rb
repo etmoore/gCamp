@@ -107,7 +107,7 @@ describe MembershipsController do
       delete :destroy, project_id: @project, id: membership_to_delete
       expect(response.status).to eq(404)
     end
-    it 'raises AccessDenied when a member tries to delete another member' do
+    it 'renders 404 when a member tries to delete another member' do
       membership_to_delete = create_membership project: @project
       session[:user_id] = @member.id
       delete :destroy, project_id: @project, id: membership_to_delete

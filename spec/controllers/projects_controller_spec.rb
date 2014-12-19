@@ -112,7 +112,7 @@ describe ProjectsController do
       post :create
       expect(response).to redirect_to(signin_path)
     end
-    it 'makes the creator of the project the owner' do
+    it 'makes the project creator the owner' do
       session[:user_id] = @user.id
       project_params = {project: {name: 'test project'}}
       post :create, project_params

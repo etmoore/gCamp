@@ -25,8 +25,18 @@ describe MembershipsController do
       get :index, project_id: @project
       expect(response.status).to eq(404)
     end
-    it 'renders the memberships index for members/owners/admins' do
+    it 'renders the memberships index for members' do
       session[:user_id] = @member.id
+      get :index, project_id: @project
+      expect(response).to render_template('index')
+    end
+    it 'renders the memberships index for owners' do
+      session[:user_id] = @owner.id
+      get :index, project_id: @project
+      expect(response).to render_template('index')
+    end
+    it 'renders the memberships index for admins' do
+      session[:user_id] = @admin.id
       get :index, project_id: @project
       expect(response).to render_template('index')
     end
@@ -42,7 +52,7 @@ describe MembershipsController do
       post :create, project_id: @project, membership: {role: 'member'}
       expect(response.status).to eq(404)
     end
-    it 'renders 404 for non-owner members' do
+    it 'renders 404 for members' do
       session[:user_id] = @member.id
       post :create, project_id: @project, membership: {role: 'member'}
       expect(response.status).to eq(404)
@@ -69,7 +79,7 @@ describe MembershipsController do
       put :update, project_id: @project, id: @membership, membership: {role: 'member'}
       expect(response.status).to eq(404)
     end
-    it 'renders 404 for non-owner members' do
+    it 'renders 404 for members' do
       session[:user_id] = @member.id
       put :update, project_id: @project, id: @membership, membership: {role: 'member'}
       expect(response.status).to eq(404)
@@ -91,7 +101,13 @@ describe MembershipsController do
       delete :destroy, project_id: @project, id: @membership
       expect(response).to redirect_to(signin_path)
     end
-    it 'raises AccessDenied when a non-owner tries to delete a member' do
+    it 'raises AccessDenied for non-members' do
+      membership_to_delete = create_membership project: @project
+      session[:user_id] = @user.id
+      delete :destroy, project_id: @project, id: membership_to_delete
+      expect(response.status).to eq(404)
+    end
+    it 'raises AccessDenied when a member tries to delete another member' do
       membership_to_delete = create_membership project: @project
       session[:user_id] = @member.id
       delete :destroy, project_id: @project, id: membership_to_delete
@@ -104,6 +120,11 @@ describe MembershipsController do
     end
     it 'redirects owners to memberships index after successful deletion' do
       session[:user_id] = @owner.id
+      delete :destroy, project_id: @project, id: @membership
+      expect(response).to redirect_to(project_memberships_path(@project))
+    end
+    it 'redirects admins to memberships index after successful deletion' do
+      session[:user_id] = @admin.id
       delete :destroy, project_id: @project, id: @membership
       expect(response).to redirect_to(project_memberships_path(@project))
     end

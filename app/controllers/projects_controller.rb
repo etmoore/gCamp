@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
 
   def show
     @current_user_owner = current_user_owner?
+    raise AccessDenied unless @project.users.include?(current_user) || current_user.admin?
   end
 
   def edit

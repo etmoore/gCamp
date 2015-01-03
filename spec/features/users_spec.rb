@@ -45,8 +45,8 @@ feature "Users" do
     expect(page).to have_content "Email has already been taken"
   end
 
-  scenario "user edits a user" do
-    visit users_path
+  scenario "user edits themselves" do
+    visit user_path(@user)
     click_on "Edit"
     fill_in "First name", with: "Bob"
     fill_in "Last name", with: "Cookabara"
@@ -57,7 +57,15 @@ feature "Users" do
     expect(page).to have_content "Bob"
   end
 
-  scenario "user deletes a user" do
+  scenario "user should not see edit button for other users on show page" do
+    other_user = create_user
+    visit user_path(other_user)
+    expect(page).to have_no_content "Edit"
+  end
+
+  scenario "admin deletes a user" do
+    admin = create_user admin: true
+    sign_in admin
     doomed_user = create_user
     visit edit_user_path(doomed_user)
     click_on "Delete User"
@@ -73,6 +81,10 @@ feature "Users" do
     sign_in(@admin)
     visit new_user_path
     expect(page).to have_content "Admin"
+  end
+
+  scenario "user can only see email addresses of other users who belong to the same project" do
+
   end
 
 end

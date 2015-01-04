@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    raise AccessDenied unless @user == current_user || current_user.admin?
   end
 
   def create
@@ -33,6 +34,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    raise AccessDenied unless @user == current_user || current_user.admin?
     @user.destroy
     redirect_to users_path, notice: 'User was successfully destroyed.'
   end
@@ -59,5 +61,4 @@ class UsersController < ApplicationController
                                       :password_confirmation)
       end
     end
-
 end

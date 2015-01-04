@@ -61,9 +61,4 @@ class UsersController < ApplicationController
                                       :password_confirmation)
       end
     end
-
-    def belongs_to_same_project?
-      
-    end
-
 end

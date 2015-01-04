@@ -15,4 +15,11 @@ module ApplicationHelper
     html
   end
 
+  def belongs_to_same_project?(user)
+    current_user.projects.each do |project|
+      return true if project.users.find_by(id: user.id)
+    end
+    false
+  end
+
 end

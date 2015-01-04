@@ -83,8 +83,25 @@ feature "Users" do
     expect(page).to have_content "Admin"
   end
 
-  scenario "user can only see email addresses of other users who belong to the same project" do
+  scenario "user can only see email addresses of project co-members" do
+    project = create_project
+    create_membership user: @user, project: project
+    co_member = create_user; create_membership user: co_member, project: project
+    non_member = create_user
+    visit users_path
+    expect(page).to have_content co_member.email
+    expect(page).to have_no_content non_member.email
+  end
 
+  scenario "admin can see all email addresses on the user index page" do
+    @admin = create_user admin: true
+    sign_in(@admin)
+    third_user = create_user
+    visit users_path
+    save_and_open_page
+    expect(page).to have_content @admin.email
+    expect(page).to have_content @user.email
+    expect(page).to have_content third_user.email
   end
 
 end

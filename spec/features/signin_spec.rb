@@ -42,4 +42,17 @@ feature "Sign In" do
     visit projects_path
     expect(page).to have_content "You must be logged in to access that action"
   end
+
+  scenario "User is redirected to page they were trying to access after logging in" do
+    @admin = create_user admin: true
+    @project = create_project
+    visit project_memberships_path(@project)
+    expect(page).to have_content "You must be logged in to access that action"
+    fill_in "Email", with: @admin.email
+    fill_in "Password", with: @admin.password
+    within ".actions" do
+      click_on "Sign In"
+    end
+    expect(page).to have_content "Manage Members"
+  end
 end

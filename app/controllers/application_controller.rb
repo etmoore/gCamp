@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   def require_signin
     unless current_user
+      store_location
       redirect_to signin_path, notice: 'You must be logged in to access that action'
     end
   end
@@ -22,5 +23,16 @@ class ApplicationController < ActionController::Base
   def render_404
     render 'public/404', status: 404, layout: false
   end
+
+  private
+
+    def store_location
+      session[:forwarding_url] = request.url if request.get?
+    end
+
+    def redirect_back(default)
+      redirect_to(session[:forwarding_url] || default)
+      session.delete(:forwarding_url)
+    end
 
 end

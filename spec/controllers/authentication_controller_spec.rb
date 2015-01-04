@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AuthenticationController do
   describe '#create' do
-    it 'sets the session[:user_id] and redirects to the projects index' do
+    it 'sets the session[:user_id] and redirects to the page the user attempted to access' do
       user = create_user
       params = {authentication: {email: user.email, password: user.password}}
       post :create, params

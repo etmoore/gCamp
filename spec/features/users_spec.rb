@@ -91,16 +91,27 @@ feature "Users" do
     visit users_path
     expect(page).to have_content co_member.email
     expect(page).to have_no_content non_member.email
+
+    visit user_path(co_member)
+    expect(page).to have_content co_member.email
+
+    visit user_path(non_member)
+    expect(page).to have_no_content non_member.email
   end
 
-  scenario "admin can see all email addresses on the user index page" do
+  scenario "admin can see all email addresses" do
     @admin = create_user admin: true
     sign_in(@admin)
     third_user = create_user
     visit users_path
-    save_and_open_page
     expect(page).to have_content @admin.email
     expect(page).to have_content @user.email
+    expect(page).to have_content third_user.email
+
+    visit user_path(@user)
+    expect(page).to have_content @user.email
+
+    visit user_path(third_user)
     expect(page).to have_content third_user.email
   end
 

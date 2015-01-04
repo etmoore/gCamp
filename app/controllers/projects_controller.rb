@@ -2,7 +2,11 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = current_user.projects
+    if current_user.admin?
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   def show

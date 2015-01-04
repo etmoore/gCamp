@@ -16,5 +16,5 @@
         %td=link_to project.memberships.count, project_memberships_path(project)
         %td
           .pull-right
-            -if project.memberships.find_by(user_id: current_user.id, role: 'owner')
+            -if project.memberships.find_by(user_id: current_user.id, role: 'owner') || current_user.admin?
               = link_to 'Edit', edit_project_path(project), class: "btn btn-primary"

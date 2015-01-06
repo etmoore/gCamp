@@ -9,28 +9,32 @@ first_name: 'Admin',
 last_name: 'User',
 email: 'admin@example.com',
 password: 'password',
-admin: true
+admin: true,
+tracker_token: ''
 )
 
 owner = User.create!(
 first_name: 'Owner',
 last_name: 'User',
 email: 'owner@example.com',
-password: 'password'
+password: 'password',
+tracker_token: ''
 )
 
 member = User.create!(
 first_name: 'Member',
 last_name: 'User',
 email: 'member@example.com',
-password: 'password'
+password: 'password',
+tracker_token: ''
 )
 
 user = User.create!(
 first_name: 'Basic',
 last_name: 'User',
 email: 'user@example.com',
-password: 'password'
+password: 'password',
+tracker_token: ''
 )
 
 multiple_owners = Project.create!(name: 'Multiple Owners')

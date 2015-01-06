@@ -28,6 +28,11 @@
     .col-sm-3
       = f.password_field :password_confirmation, class: "form-control"
 
+  .form-group
+    = f.label "Pivotal Tracker Token", class: "col-sm-2 control-label"
+    .col-sm-3
+      = f.password_field :tracker_token, class: "form-control"
+
   - if current_user.admin?
     .form-group
       .col-sm-offset-2.col-sm-10

@@ -1,0 +1,27 @@
+= page_header "Stories for #{@project[:name]}" do
+  %span
+    = "(showing first #{@stories.count})"
+
+%table.table.table-striped.table-bordered
+  %thead
+    %th.active
+      Story
+    %th.active
+      Estimate
+    %th.active
+      Labels
+    %th.active
+      Current State
+  %tbody
+    - @stories.reverse.each do |story|
+      %tr
+        %td.col-sm-6
+          = link_to story[:name], story[:url]
+        %td
+          = story[:estimate]
+        %td
+          - unless story[:labels][0] == nil
+            = "#{story[:labels][0].values[3]}#{", " if story[:labels][1] != nil}#{story[:labels][1].values[3]if story[:labels][1] != nil}"
+        %td
+          = story[:current_state]
+%hr/

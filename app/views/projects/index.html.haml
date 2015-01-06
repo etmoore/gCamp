@@ -27,6 +27,6 @@
       %tr
         %th Name
     %tbody
-      - @tracker_projects.each do |t_project|
+      - @tracker_projects.each do |tracker_project|
         %tr
-          %td=link_to t_project[:name], t_project
+          %td=link_to tracker_project[:name], tracker_project_path(tracker_project[:id])

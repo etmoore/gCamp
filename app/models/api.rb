@@ -14,4 +14,26 @@ class API
       json_response = JSON.parse(response.body, symbolize_names: true)
     end
   end
+
+  def pivotal_stories(current_user, project_id)
+    response = @conn.get do |req|
+      req.url "https://www.pivotaltracker.com/services/v5/projects/#{project_id}/stories?limit=500"
+      req.headers['Content-Type'] = 'application/json'
+      req.headers['X-TrackerToken'] = current_user.tracker_token
+    end
+    if response.success?
+      json_response = JSON.parse(response.body, symbolize_names: true)
+    end
+  end
+
+  def pivotal_project(current_user, project_id)
+    response = @conn.get do |req|
+      req.url "/services/v5/projects/#{project_id}"
+      req.headers['Content-Type'] = 'application/json'
+      req.headers['X-TrackerToken'] = current_user.tracker_token
+    end
+    if response.success?
+      json_response = JSON.parse(response.body, symbolize_names: true)
+    end
+  end
 end

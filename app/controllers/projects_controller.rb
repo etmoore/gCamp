@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
     else
       @projects = current_user.projects
     end
-    if current_user.tracker_token && !current_user.tracker_token.lstrip.empty?
+    unless current_user.tracker_token.lstrip.empty?
       @tracker_projects = API.new.pivotal_projects(current_user)
     end
   end

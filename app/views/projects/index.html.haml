@@ -19,7 +19,7 @@
             -if project.memberships.find_by(user_id: current_user.id, role: 'owner') || current_user.admin?
               = link_to 'Edit', edit_project_path(project), class: "btn btn-primary"
 
-- if current_user.tracker_token && !current_user.tracker_token.lstrip.empty?
+- unless current_user.tracker_token.lstrip.empty?
   = page_header "Projects"
 
   %table.table

@@ -20,8 +20,7 @@
         %td
           = story[:estimate]
         %td
-          - unless story[:labels][0] == nil
-            = "#{story[:labels][0].values[3]}#{", " if story[:labels][1] != nil}#{story[:labels][1].values[3]if story[:labels][1] != nil}"
+          = join_labels(story)
         %td
           = story[:current_state]
 %hr/

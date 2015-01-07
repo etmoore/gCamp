@@ -22,4 +22,11 @@ module ApplicationHelper
     false
   end
 
+  def join_labels(story)
+    label_array = story[:labels].map do |label|
+      label[:name]
+    end
+    label_array.join(', ')
+  end
+
 end

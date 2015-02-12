@@ -24,7 +24,10 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to "gCamp", root_path, class: "navbar-brand"
+          - if current_user
+            = link_to "gCamp", projects_path, class: "navbar-brand"
+          - else
+            = link_to "gCamp", root_path, class: "navbar-brand"
         %ul.nav.navbar-nav.navbar-right
           - if current_user
             %li= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user)

@@ -24,15 +24,15 @@ class ApplicationController < ActionController::Base
     render 'public/404', status: 404, layout: false
   end
 
+  def redirect_back(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
   private
 
     def store_location
       session[:forwarding_url] = request.url if request.get?
-    end
-
-    def redirect_back(default)
-      redirect_to(session[:forwarding_url] || default)
-      session.delete(:forwarding_url)
     end
 
 end
